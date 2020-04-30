@@ -1,0 +1,14 @@
+.navbar-nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+.navbar-nav > li {
+  margin: 0 1rem;
+}
+.navbar-nav > li > a {
+  text-decoration: none;
+}
+.navbar {
+  background-color: darkgrey;
+}
