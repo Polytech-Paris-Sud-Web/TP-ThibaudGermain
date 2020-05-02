@@ -9,18 +9,23 @@ import {ArticleService} from '../services/article/article.service';
   styleUrls: ['./articles.component.css']
 })
 export class ArticlesComponent implements OnInit {
-  articles: Article[];
+  public articles: Article[];
+
   constructor(
     private articleService: ArticleService
   ) {}
 
   ngOnInit() {
-    this.articleService.getArticles().subscribe((articles: Article[]) => {
+    this.updateArticles('');
+  }
+
+  public updateArticles(value: string): void {
+    this.articleService.getArticles(value).subscribe((articles: Article[]) => {
       this.articles = articles;
     });
   }
 
-  public delete(article: Article) {
+  public delete(article: Article): void {
     this.articleService.deleteArticle(article.id).subscribe(() => {
       const index = this.articles.findIndex(a => a.id === article.id);
       this.articles.splice(index, 1);

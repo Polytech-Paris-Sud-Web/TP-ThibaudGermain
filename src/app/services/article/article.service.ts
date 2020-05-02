@@ -15,8 +15,8 @@ export class ArticleService {
   }
 
 
-  public getArticles(): Observable<Article[]> {
-    return this.http.get<Article[]>('http://localhost:3000/articles');
+  public getArticles(filter?: string): Observable<Article[]> {
+    return this.http.get<Article[]>(`http://localhost:3000/articles?q=${filter}`);
   }
 
   public deleteArticle(id: string): Observable<void>  {

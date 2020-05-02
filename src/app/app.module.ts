@@ -27,8 +27,7 @@ const appRoutes: Routes = [
     HttpClientModule,
     ReactiveFormsModule,
     RouterModule.forRoot(
-      appRoutes,
-      { enableTracing: true }
+      appRoutes
     ),
   ],
   providers: [ArticleService],

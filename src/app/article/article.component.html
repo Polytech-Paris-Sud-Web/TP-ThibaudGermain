@@ -2,6 +2,8 @@
   <h3> {{this.article.title}} </h3>
   <p class="lead"> {{this.article.content}} </p>
   <blockquote>Written by {{this.article.authors}}</blockquote>
-  <button class="btn btn-danger" (click)="delete()" *ngIf="!route.snapshot.params.id">Delete</button>
-  <button class="btn btn-info" (click)="infos()" *ngIf="!route.snapshot.params.id">Informations</button>
+  <div class="btns">
+    <button class="btn btn-danger" (click)="delete()" *ngIf="!route.snapshot.params.id">Delete</button>
+    <button class="btn btn-info" (click)="infos()" *ngIf="!route.snapshot.params.id">Informations</button>
+  </div>
 </div>
