@@ -3,9 +3,10 @@ import {Article} from '../../models/article';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import { environment } from '../../../environments/environment';
+import {ArticleSource} from './article.source';
 
 @Injectable()
-export class ArticleService {
+export class ArticleHttpRestSource implements ArticleSource {
   constructor(
     private http: HttpClient
   ) { }
@@ -13,7 +14,6 @@ export class ArticleService {
   public getArticle(id: string): Observable<Article>  {
     return this.http.get<Article>(`${environment.jsonServerUrl}/articles/${id}`);
   }
-
 
   public getArticles(filter?: string): Observable<Article[]> {
     return this.http.get<Article[]>(`${environment.jsonServerUrl}/articles?q=${filter}`);

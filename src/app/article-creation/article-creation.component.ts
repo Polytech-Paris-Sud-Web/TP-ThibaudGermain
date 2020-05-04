@@ -1,8 +1,9 @@
 import {Component} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {ArticleService} from '../services/article/article.service';
+import {ArticleHttpRestSource} from '../services/article/article-http-rest-source.service';
 import {Article} from '../models/article';
 import {Router} from '@angular/router';
+import {ArticleSource} from '../services/article/article.source';
 
 @Component({
   selector: 'app-article-creation',
@@ -15,7 +16,7 @@ export class ArticleCreationComponent {
 
   constructor(
     private fb: FormBuilder,
-    private articleService: ArticleService,
+    private articleSource: ArticleSource,
     private router: Router
   ) {
     this.articleForm = this.fb.group({
@@ -32,7 +33,7 @@ export class ArticleCreationComponent {
       content : formModel.content,
       authors : formModel.authors
     };
-    this.articleService.createArticle(newArticle).subscribe(() => {
+    this.articleSource.createArticle(newArticle).subscribe(() => {
       this.router.navigate(['']);
     });
   }

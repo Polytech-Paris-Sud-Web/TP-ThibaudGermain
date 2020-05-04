@@ -1,15 +1,15 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { ArticleService } from './article.service';
+import { ArticleHttpRestSource } from './article-http-rest-source.service';
 
 describe('ArticleService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [ArticleService]
+      providers: [ArticleHttpRestSource]
     });
   });
 
-  it('should be created', inject([ArticleService], (service: ArticleService) => {
+  it('should be created', inject([ArticleHttpRestSource], (service: ArticleHttpRestSource) => {
     expect(service).toBeTruthy();
   }));
 });

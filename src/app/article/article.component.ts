@@ -1,7 +1,8 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Article} from '../models/article';
 import {ActivatedRoute, Router} from '@angular/router';
-import {ArticleService} from '../services/article/article.service';
+import {ArticleHttpRestSource} from '../services/article/article-http-rest-source.service';
+import {ArticleSource} from '../services/article/article.source';
 
 @Component({
   selector: 'app-article',
@@ -19,10 +20,10 @@ export class ArticleComponent {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private articleService: ArticleService
+    private articleSource: ArticleSource
   ) {
     if (!this.article && this.route.snapshot.params.id) {
-      this.articleService.getArticle(this.route.snapshot.params.id).subscribe(article => {
+      this.articleSource.getArticle(this.route.snapshot.params.id).subscribe(article => {
         this.article = article;
       });
     }

@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Article} from '../models/article';
-import {ArticleService} from '../services/article/article.service';
+import {ArticleHttpRestSource} from '../services/article/article-http-rest-source.service';
+import {ArticleSource} from '../services/article/article.source';
 
 
 @Component({
@@ -12,7 +13,7 @@ export class ArticlesComponent implements OnInit {
   public articles: Article[];
 
   constructor(
-    private articleService: ArticleService
+    private articleSource: ArticleSource
   ) {}
 
   ngOnInit() {
@@ -20,13 +21,13 @@ export class ArticlesComponent implements OnInit {
   }
 
   public updateArticles(value: string): void {
-    this.articleService.getArticles(value).subscribe((articles: Article[]) => {
+    this.articleSource.getArticles(value).subscribe((articles: Article[]) => {
       this.articles = articles;
     });
   }
 
   public delete(article: Article): void {
-    this.articleService.deleteArticle(article.id).subscribe(() => {
+    this.articleSource.deleteArticle(article.id).subscribe(() => {
       const index = this.articles.findIndex(a => a.id === article.id);
       this.articles.splice(index, 1);
     });
